@@ -85,6 +85,7 @@ This project delved into the core components of the Transformer architecture and
     *   Implemented a Transformer model for a language modeling task.
     *   **Pretrained** a Transformer on a large text corpus using a span corruption objective.
     *   **Fine-tuned** the pretrained model for a downstream, knowledge-intensive question-answering task.
+    *   Researched and implemented a more efficient attention variant (Perceiver-style cross-attention) to handle long contexts.
 
 ### Project 5: Implementing and Fine-Tuning minBERT for Downstream Tasks
 

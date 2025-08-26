@@ -1,26 +1,26 @@
-# CS 224N Default Final Project - Multitask BERT
+# Project 5: minBERT for Downstream Tasks
 
-This is the starting code for the default final project for the Stanford CS 224N class. You can find the handout [here](https://web.stanford.edu/class/cs224n/project/default-final-project-bert-handout.pdf)
+This project implements a minimalist version of BERT ("minBERT") and fine-tunes it on various NLP downstream tasks like sentiment analysis, paraphrase detection, and semantic textual similarity.
 
-In this project, you will implement some important components of the BERT model to better understanding its architecture. 
-You will then use the embeddings produced by your BERT model on three downstream tasks: sentiment classification, paraphrase detection and semantic similarity.
+---
 
-After finishing the BERT implementation, you will have a simple model that simultaneously performs the three tasks.
-You will then implement extensions to improve on top of this baseline.
+*   **`config.py`**: Defines `PretrainedConfig` and `BertConfig` classes, which are used to store model configurations and load pretrained configurations.
 
-## Setup instructions
+*   **`tokenizer.py`**: Implements the `BertTokenizer` for tokenizing text, converting tokens to IDs, and handling special tokens, essential for preparing text input for BERT.
 
-* Follow `setup.sh` to properly setup a conda environment and install dependencies.
-* There is a detailed description of the code structure in [STRUCTURE.md](./STRUCTURE.md), including a description of which parts you will need to implement.
-* You are only allowed to use libraries that are installed by `setup.sh`, external libraries that give you other pre-trained models or embeddings are not allowed (e.g., `transformers`).
+*   **`base_bert.py`**: Provides the base `BertPreTrainedModel` class, handling common functionalities like weight initialization and loading pretrained weights.
 
-## Handout
+*   **`bert.py`**: Implements the core BERT model architecture, including `BertSelfAttention` (multi-head self-attention), `BertLayer` (Transformer encoder block), and the overall `BertModel` structure.
 
-Please refer to the handout for a through description of the project and its parts.
+*   **`datasets.py`**: Manages data loading and preprocessing for all three downstream tasks, including the creation of custom PyTorch `Dataset` classes and collate functions.
 
-### Acknowledgement
+*   **`optimizer.py`**: Implements the AdamW optimizer, used for training of the BERT-based models.
 
-The BERT implementation part of the project was adapted from the "minbert" assignment developed at Carnegie Mellon University's [CS11-711 Advanced NLP](http://phontron.com/class/anlp2021/index.html),
-created by Shuyan Zhou, Zhengbao Jiang, Ritam Dutt, Brendon Boldt, Aditya Veerubhotla, and Graham Neubig.
+*   **`classifier.py`**: Implements the `BertSentimentClassifier` specifically for sentiment analysis on the SST dataset and handles its training and evaluation.
 
-Parts of the code are from the [`transformers`](https://github.com/huggingface/transformers) library ([Apache License 2.0](./LICENSE)).
+*   **`multitask_classifier.py`**: Defines the `MultitaskBERT` model, which extends BERT to handle sentiment classification, paraphrase detection, and semantic textual similarity tasks simultaneously. It also orchestrates the multi-task training loop.
+
+*   **`evaluation.py`**: Contains functions to evaluate the performance of the models on individual tasks (SST, Quora, STS) and provides a combined evaluation for the multitask model.
+
+
+
